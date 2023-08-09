@@ -33,6 +33,8 @@ Blog.init({
     modelName: 'blog'
 })
 
+Blog.sync()
+
 const main = async () => {
   try {
     await sequelize.authenticate()
