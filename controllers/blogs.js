@@ -18,7 +18,12 @@ router.post('/', async (req, res) => {
 
 const blogFinder = async (req, res, next) => {
     req.blog = await Blog.findByPk(req.params.id)
-    next()
+    if (req.blog) {
+        req.likes = req.body.likes
+        next()
+    } else {
+        res.status(404).end()
+    }
   }
   
   router.get('/:id', blogFinder, async (req, res) => {
@@ -38,12 +43,31 @@ const blogFinder = async (req, res, next) => {
   
   router.put('/:id', blogFinder, async (req, res) => {
     if (req.blog) {
-      req.blog.important = req.blog.important
+      req.blog.likes = req.body.likes 
       await req.blog.save()
       res.json(req.blog)
     } else {
       res.status(404).end()
     }
   })
+
+  router.put('/:id/likes', blogFinder, async (req, res) => {
+    console.log('PUT /:id/likes - Request Body:', req.body);
+    console.log('PUT /:id/likes - Found Blog:', req.blog);
+  
+    if (req.blog) {
+      try {
+        req.blog.likes = req.body.likes; // Assuming your request body contains the updated like amount
+        await req.blog.save();
+        console.log('Likes Updated:', req.blog.likes);
+        res.json(req.blog);
+      } catch (error) {
+        console.error('Error Updating Likes:', error);
+        res.status(400).json({ error });
+      }
+    } else {
+      res.status(404).end();
+    }
+  });
 
 module.exports = router
