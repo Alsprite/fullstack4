@@ -42,16 +42,6 @@ const blogFinder = async (req, res, next) => {
   })
   
   router.put('/:id', blogFinder, async (req, res) => {
-    if (req.blog) {
-      req.blog.likes = req.body.likes 
-      await req.blog.save()
-      res.json(req.blog)
-    } else {
-      res.status(404).end()
-    }
-  })
-
-  router.put('/:id/likes', blogFinder, async (req, res) => {
     console.log('PUT /:id/likes - Request Body:', req.body);
     console.log('PUT /:id/likes - Found Blog:', req.blog);
   
@@ -68,6 +58,6 @@ const blogFinder = async (req, res, next) => {
     } else {
       res.status(404).end();
     }
-  });
+  })
 
 module.exports = router
