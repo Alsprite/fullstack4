@@ -1,16 +1,43 @@
 const router = require('express').Router()
+const jwt = require('jsonwebtoken')
 
-const { Blog } = require('../models')
+const { Blog, User } = require('../models')
+const { SECRET } = require('../util/config')
 
 router.get('/', async (req, res) => {
-  const blogs = await Blog.findAll()
+  const blogs = await Blog.findAll({
+    attributes: { exclude: ['userId'] },
+    include: {
+      model: User,
+      attributes: ['name']
+    }
+  })
   res.json(blogs)
 })
 
-router.post('/', async (req, res) => {
+const tokenExtractor = (req, res, next) => {
+  const authorization = req.get('authorization')
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    try {
+      console.log(authorization.substring(7))
+      console.log(SECRET)
+      req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+    } catch (error) {
+      console.log(error)
+      return res.status(401).json({ error: 'token invalid' })
+    }
+  } else {
+    return res.status(401).json({ error: 'token missing' })
+  }
+
+  next()
+}
+
+router.post('/', tokenExtractor, async (req, res) => {
   try {
-    const blogs = await Blog.create(req.body)
-    res.json(blogs)
+    const user = await User.findByPk(req.decodedToken.id)
+    const blog = await Blog.create({...req.body, userId: user.id})
+    res.json(blog)
   } catch(error) {
     return res.status(400).json({ error })
   }
@@ -47,16 +74,16 @@ const blogFinder = async (req, res, next) => {
   
     if (req.blog) {
       try {
-        req.blog.likes = req.body.likes; // Assuming your request body contains the updated like amount
-        await req.blog.save();
-        console.log('Likes Updated:', req.blog.likes);
-        res.json(req.blog);
+        req.blog.likes = req.body.likes
+        await req.blog.save()
+        console.log('Likes Updated:', req.blog.likes)
+        res.json(req.blog)
       } catch (error) {
-        console.error('Error Updating Likes:', error);
-        res.status(400).json({ error });
+        console.error('Error Updating Likes:', error)
+        res.status(400).json({ error })
       }
     } else {
-      res.status(404).end();
+      res.status(404).end()
     }
   })
 

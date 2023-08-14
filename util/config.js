@@ -1,6 +1,7 @@
-require('dotenv').config()
+require('dotenv').config('./.env')
 
 module.exports = {
   DATABASE_URL: process.env.DATABASE_URL,
-  PORT: process.env.PORT || 3001,
+  PORT: process.env.PORT,
+  SECRET: process.env.SECRET
 }

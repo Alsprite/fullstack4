@@ -1,8 +1,9 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOjEsImlhdCI6MTY5MTk5NDE5Nn0.BUZEsZcao0koffvlh5Ak3z7boXT6h_rf_mwehY5cUgA
 
 {
-    "author": "meikaman",
+    "author": "matti",
     "url": "it.esedu.fi",
     "title": "Slavan siivouksen tarve"
 }
