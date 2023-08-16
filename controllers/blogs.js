@@ -16,12 +16,12 @@ router.get('/', async (req, res) => {
 })
 
 const tokenExtractor = (req, res, next) => {
-  const authorization = req.get('authorization')
+  const authorization = req.get('Authorization')
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     try {
-      console.log(authorization.substring(7))
-      console.log(SECRET)
-      req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+      const token = authorization.substring(7);
+      const decodedToken = jwt.verify(token, SECRET);
+      req.currentUser = decodedToken
     } catch (error) {
       console.log(error)
       return res.status(401).json({ error: 'token invalid' })
@@ -61,12 +61,18 @@ const blogFinder = async (req, res, next) => {
     }
   })
   
-  router.delete('/:id', blogFinder, async (req, res) => {
+  router.delete('/:id', blogFinder, tokenExtractor, async (req, res) => {
     if (req.blog) {
-      await req.blog.destroy()
+      if (req.blog.userId !== req.currentUser.id) {
+        return res.status(403).json({ error: 'You do not have permission to delete this blog.' });
+      }
+      
+      await req.blog.destroy();
+      return res.status(204).end();
+    } else {
+      return res.status(404).end();
     }
-    res.status(204).end()
-  })
+  });
   
   router.put('/:id', blogFinder, async (req, res) => {
     console.log('PUT /:id/likes - Request Body:', req.body);
