@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize')
-
 const { sequelize } = require('../util/db')
 
 class User extends Model {}
@@ -13,7 +12,13 @@ User.init({
   username: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: {
+        msg: 'Username must be in email format'
+      }
+    }
   },
   name: {
     type: DataTypes.STRING,
