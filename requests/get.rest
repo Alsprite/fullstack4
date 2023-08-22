@@ -1,2 +1,2 @@
-GET http://localhost:3001/api/blogs/?search=react
+GET http://localhost:3001/api/blogs/?search=jami
 Content-Type: application/json
