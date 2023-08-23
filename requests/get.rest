@@ -1,2 +1,2 @@
-GET http://localhost:3001/api/blogs/?search=jami
+GET http://localhost:3001/api/blogs/
 Content-Type: application/json
