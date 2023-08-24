@@ -1,9 +1,9 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtvayIsImlkIjoyLCJpYXQiOjE2OTI2ODk3Mjd9.g7MlzqxRgNrBPtwH77inVrn8W0s-xBZ0ppkUPcvXVgU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTI4Njg4OTJ9.UurfDdY9KFn6R8btP0KXh8cp-wKzuQRdUd5nBFxzkAE
 
 {
-    "author": "Test title",
-    "url": "bass.com",
-    "title": "jami"
+    "author": "Bendli",
+    "url": "piraati",
+    "title": "mastomastomasto"
 }
