@@ -9,23 +9,20 @@ module.exports = {
         autoIncrement: true
       },
       author: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
       },
       url: {
-        type: DataTypes.TEXT,
-        allowNull: false
+          type: DataTypes.TEXT,
+          allowNull: false
       },
       title: {
-        type: DataTypes.TEXT,
-        allowNull: false
+          type: DataTypes.TEXT,
+          allowNull: false
       },
       likes: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
+          type: DataTypes.INTEGER,
+          defaultValue: 0
       },
-      timestamps: true,
-      createdAt: true,
-      updatedAt: true
     })
     await queryInterface.createTable('users', {
       id: {
@@ -37,10 +34,9 @@ module.exports = {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
-        unique: true,
         validate: {
           isEmail: {
-            msg: 'Username must be in email format'
+            msg: 'Username must be in email format.'
           }
         }
       },
@@ -54,6 +50,7 @@ module.exports = {
       allowNull: false,
       references: { model: 'users', key: 'id' },
     })
+    await queryInterface.addColumn('blogs')
   },
   down: async ({ context: queryInterface }) => {
     await queryInterface.dropTable('blogs')
