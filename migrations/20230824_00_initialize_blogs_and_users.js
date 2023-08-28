@@ -23,6 +23,9 @@ module.exports = {
         type: DataTypes.INTEGER,
         defaultValue: 0
       },
+      timestamps: true,
+      createdAt: true,
+      updatedAt: true
     })
     await queryInterface.createTable('users', {
       id: {

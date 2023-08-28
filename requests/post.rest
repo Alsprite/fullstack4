@@ -1,9 +1,9 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTI4Njg4OTJ9.UurfDdY9KFn6R8btP0KXh8cp-wKzuQRdUd5nBFxzkAE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTMyMDc1OTZ9.N_v8BPH6_ND0XcAfSeAvNAo7Lq-LqQvZF1bt2b3u0Wo
 
 {
-    "author": "Bendli",
-    "url": "piraati",
-    "title": "mastomastomasto"
+    "author": "Mazai",
+    "url": "kokk",
+    "title": "Ilmarin ilmavaivat"
 }
