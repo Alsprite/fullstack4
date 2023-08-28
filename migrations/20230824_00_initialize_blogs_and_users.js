@@ -23,21 +23,6 @@ module.exports = {
         type: DataTypes.INTEGER,
         defaultValue: 0
       },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: { model: 'users', key: 'id' }
-      },
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      updated_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
     })
     await queryInterface.createTable('users', {
       id: {
@@ -51,25 +36,15 @@ module.exports = {
         allowNull: false,
         unique: true,
         validate: {
-            isEmail: {
-                msg: 'Username must be in email format'
-            }
+          isEmail: {
+            msg: 'Username must be in email format'
+          }
         }
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      updated_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
     })
     await queryInterface.addColumn('blogs', 'user_id', {
       type: DataTypes.INTEGER,
