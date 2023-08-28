@@ -4,6 +4,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpb
 
 {
     "author": "Mazai",
-    "url": "kokk",
-    "title": "Ilmarin ilmavaivat"
+    "url": "youtube",
+    "title": "Juhon juopottelut",
+    "year": 2004
 }

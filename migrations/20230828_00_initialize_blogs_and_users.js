@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes, Sequelize } = require('sequelize')
 
 module.exports = {
   up: async ({ context: queryInterface }) => {
@@ -23,7 +23,31 @@ module.exports = {
           type: DataTypes.INTEGER,
           defaultValue: 0
       },
-    })
+      year: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            min: {
+                args: 1991,
+                msg: 'Creation year must be after 1991.'
+            },
+            max: {
+                args: 2022,
+                msg: 'Creation year must be before 2023.'
+            }
+        }
+    },
+    created_at: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      },
+      updated_at: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      }
+  })
     await queryInterface.createTable('users', {
       id: {
         type: DataTypes.INTEGER,
@@ -50,7 +74,6 @@ module.exports = {
       allowNull: false,
       references: { model: 'users', key: 'id' },
     })
-    await queryInterface.addColumn('blogs')
   },
   down: async ({ context: queryInterface }) => {
     await queryInterface.dropTable('blogs')
