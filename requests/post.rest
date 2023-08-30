@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTMyMTI5MjJ9.qa2fLmZC2ZlCx6LJ9vAKizad4EE59N6dpSMJAwVgMbU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTMzNzgwMzd9.DuJ9Iy0IVyoUHcSuRPb5S2xdEnBfIMt2JusBwwIe8NY
 
 {
     "author": "Mazai",
-    "url": "youtube",
-    "title": "Juhon juopottelut",
+    "url": "kokkers",
+    "title": "Savelin sileät",
     "year": 2004
 }

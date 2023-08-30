@@ -23,30 +23,16 @@ module.exports = {
           type: DataTypes.INTEGER,
           defaultValue: 0
       },
-      year: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            min: {
-                args: 1991,
-                msg: 'Creation year must be after 1991.'
-            },
-            max: {
-                args: 2022,
-                msg: 'Creation year must be before 2023.'
-            }
-        }
-    },
     created_at: {
-        type: 'TIMESTAMP',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-      },
-      updated_at: {
-        type: 'TIMESTAMP',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-      }
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
+    },
+    updated_at: {
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
+    }
   })
     await queryInterface.createTable('users', {
       id: {
