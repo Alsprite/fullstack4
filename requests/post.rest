@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTMzNzgwMzd9.DuJ9Iy0IVyoUHcSuRPb5S2xdEnBfIMt2JusBwwIe8NY
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTMzNzgyMDF9.EVCY2gQ4ese2PM3v2c5y8Pj90BLaoPIVN93rlUKPacQ
 
 {
     "author": "Mazai",
     "url": "kokkers",
-    "title": "Savelin sileät",
+    "title": "Slavan eurolavat",
     "year": 2004
 }
