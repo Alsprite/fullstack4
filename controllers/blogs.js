@@ -47,8 +47,17 @@ const tokenExtractor = (req, res, next) => {
 router.post('/', tokenExtractor, async (req, res) => {
   try {
     const user = await User.findByPk(req.decodedToken.id)
+    const { author, url, title, likes, year } = req.body
     console.log(req.body)
-    const blog = await Blog.create({...req.body, userId: user.id})
+    const blog = await Blog.create({
+      author,
+      url,
+      title,
+      likes,
+      year,
+      userId: user.id
+    })
+    console.log(blog)
     res.json(blog)
   } catch(error) {
     return res.status(400).json({ error })

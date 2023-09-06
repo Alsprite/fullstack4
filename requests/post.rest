@@ -1,10 +1,11 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTMzNzgyMDF9.EVCY2gQ4ese2PM3v2c5y8Pj90BLaoPIVN93rlUKPacQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTM5OTA5ODR9.3NcXxwAMxKN42rtr3PKUGFb1UzOUxMWoy6hFrTUTXdg
 
 {
     "author": "Mazai",
     "url": "kokkers",
     "title": "Slavan eurolavat",
+    "likes": 0,
     "year": 2004
 }
