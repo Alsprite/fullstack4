@@ -25,7 +25,7 @@ module.exports = {
       },
       year: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
       },
     created_at: {
       type: 'TIMESTAMP',

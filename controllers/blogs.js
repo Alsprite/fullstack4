@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const { Op } = require('sequelize')
-
 const { Blog, User } = require('../models')
 const { SECRET } = require('../util/config')
+
+const currentYear = new Date().getFullYear();
 
 router.get('/', async (req, res) => {
   const where = {}
@@ -49,6 +50,9 @@ router.post('/', tokenExtractor, async (req, res) => {
     const user = await User.findByPk(req.decodedToken.id)
     const { author, url, title, likes, year } = req.body
     console.log(req.body)
+    if (!req.body.year || req.body.year < 1991 || req.body.year > currentYear ) {
+      throw Error('The year should be at least 1991 and no greater than current year!')
+    }
     const blog = await Blog.create({
       author,
       url,
