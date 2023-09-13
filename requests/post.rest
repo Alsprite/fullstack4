@@ -1,6 +1,6 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTM5OTE1MTV9.3mgR4pTLULwl1U0B8eX3DWE-q1L94yyNfeQd_c1n8jc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbXBvQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2OTQ1OTY5MTd9.zn9Q03VRjB9XPErdtbv6COKT1nIp9KFiFQhYdW6gT-Q
 
 {
     "author": "Mazai",
