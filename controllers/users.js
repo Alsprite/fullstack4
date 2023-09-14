@@ -41,17 +41,19 @@ router.put('/:username', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const id = req.params.id
-    console.log(id)
+    const where = {}
+    if (req.query.read) where.read = req.query.read
+    const { id } = req.params
     const user = await User.findByPk(id, {
-      attributes: { exclude: [''] },
+      attributes: { exclude: [''] } ,
       include: [{
         model: Blog,
         as: 'readings',
         attributes: ['id', 'author', 'title', 'url', 'likes', 'year'],
         through: {
           as: 'reading_list',
-          attributes: ['id', 'read']
+          attributes: ['id', 'read'],
+          where,
         }
       }]
     })
