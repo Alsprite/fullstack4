@@ -63,6 +63,11 @@ module.exports = {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'users', key: 'id' },
+    }),
+    await queryInterface.addColumn('users', 'disabled', {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     })
   },
   down: async ({ context: queryInterface }) => {

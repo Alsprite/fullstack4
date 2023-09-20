@@ -5,6 +5,7 @@ const { SECRET } = require('../util/config')
 const User = require('../models/user')
 
 router.post('/', async (request, response) => {
+  
   const body = request.body
 
   const user = await User.findOne({
@@ -12,7 +13,11 @@ router.post('/', async (request, response) => {
       username: body.username
     }
   })
-
+  if (user.disabled) {
+    return response.status(401).json({
+      error: 'User disabled!'
+    })
+  }
   const passwordCorrect = body.password === 'salainen'
 
   if (!(user && passwordCorrect)) {
