@@ -82,7 +82,7 @@ const blogFinder = async (req, res, next) => {
     }
   });
   
-  router.put('/:id', blogFinder, async (req, res) => {
+  router.put('/:id', blogFinder, userFinder, async (req, res) => {
     console.log('PUT /:id/likes - Request Body:', req.body);
     console.log('PUT /:id/likes - Found Blog:', req.blog);
   

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const { SECRET } = require('../util/config')
 const userFinder = require('../util/sessionChecker')
 
-router.post('/', async (req, res) => {
+router.post('/', userFinder, async (req, res) => {
     try {
         console.log('LIST: ', List)
         const list = await List.create(req.body)
