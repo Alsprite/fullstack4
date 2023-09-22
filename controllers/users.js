@@ -1,6 +1,7 @@
 const router = require('express').Router()
 
 const { User, Blog } = require('../models')
+const userFinder = require('../util/sessionChecker')
 
 router.get('/', async (req, res) => {
   const users = await User.findAll({
@@ -20,7 +21,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.put('/:username', async (req, res) => {
+router.put('/:username', userFinder, async (req, res) => {
   try {
     const username = req.params.username;
     const user = await User.findOne({ where: { username } });

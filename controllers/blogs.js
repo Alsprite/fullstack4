@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const { Op } = require('sequelize')
 const { Blog, User } = require('../models')
 const { SECRET } = require('../util/config')
+const userFinder = require('../util/sessionChecker')
 
 const currentYear = new Date().getFullYear();
 
@@ -27,25 +28,7 @@ router.get('/', async (req, res) => {
   res.json(blogs)
 })
 
-const tokenExtractor = (req, res, next) => {
-  const authorization = req.get('Authorization')
-  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-    try {
-      const token = authorization.substring(7);
-      const decodedToken = jwt.verify(token, SECRET);
-      req.decodedToken = decodedToken
-    } catch (error) {
-      console.log(error)
-      return res.status(401).json({ error: 'token invalid' })
-    }
-  } else {
-    return res.status(401).json({ error: 'token missing' })
-  }
-
-  next()
-}
-
-router.post('/', tokenExtractor, async (req, res) => {
+router.post('/', userFinder, async (req, res) => {
   try {
     const user = await User.findByPk(req.decodedToken.id)
     const { author, url, title, likes, year } = req.body
@@ -86,7 +69,7 @@ const blogFinder = async (req, res, next) => {
     }
   })
   
-  router.delete('/:id', blogFinder, tokenExtractor, async (req, res) => {
+  router.delete('/:id', blogFinder, userFinder, async (req, res) => {
     if (req.blog) {
       if (req.blog.userId !== req.currentUser.id) {
         return res.status(403).json({ error: 'You do not have permission to delete this blog.' });

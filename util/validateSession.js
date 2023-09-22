@@ -1,4 +1,4 @@
-const { Session } = require('../models')
+const { Session } = require('../models/session')
 
 const validateSession = async ({id, token}) => {
     const session = await Session.findOne({
